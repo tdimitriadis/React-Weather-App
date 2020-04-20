@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import * as data from "../assets/testData.json";
-import SimpleReport from "../components/SimpleReport";
-import "./css/weather.css";
+import * as data from '../assets/testData.json';
+import SimpleReport from '../components/SimpleReport';
+import './css/weather.css';
 
 const Weather = () => {
   const [weatherReport, setWeatherReport] = useState({});
-  const APIKEY = "4c960f34f15cb8711899b9bf6b4f763d";
+  const APIKEY = '4c960f34f15cb8711899b9bf6b4f763d';
 
   // useEffect(() => {
   //   fetch(
@@ -14,7 +14,7 @@ const Weather = () => {
   //   )
   //     .then((res) => res.json())
   //     .then((data) => {
-  //       console.log(data);
+  //       setWeatherReport(data);
   //     });
   // }, []);
 
@@ -23,15 +23,15 @@ const Weather = () => {
   }, []);
 
   return (
-    <div className="weather-container">
-      <div class="weather-grid-container">
-        <div class="weather-current-location">Current Location</div>
-        <div class="weather-around-the-world">Around the world</div>
-        <div class="weather-current">
-          <SimpleReport weatherReport={weatherReport} />
+    <div className='weather-container'>
+      <div className='weather-grid-container'>
+        <div className='weather-current-location'>Current Location</div>
+        <div className='weather-around-the-world'>Around the world</div>
+        <div className='weather-current'>
+          <SimpleReport weatherReport={weatherReport.current} />
         </div>
-        <div class="weather-forecast">Forecast</div>
-        <div class="weather-seven-day">Seven day</div>
+        <div className='weather-forecast'>Forecast</div>
+        <div className='weather-seven-day'>Seven day</div>
       </div>
     </div>
   );

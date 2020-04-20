@@ -3,7 +3,7 @@ body {
   /* Full height */
   box-sizing: border-box;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   padding: 3px;
   background-repeat: no-repeat;
   background-size: 100% 100%;

@@ -1,0 +1,60 @@
+.simple-report-current-weather-container {
+  grid-area: header;
+}
+.simple-report-current-container {
+  grid-area: menu;
+}
+
+.simple-report-wind-container {
+  grid-area: main;
+}
+.simple-report-current-day-container {
+  grid-area: right;
+}
+.simple-report-temperature-container {
+  grid-area: footer;
+}
+
+.simple-report-grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu menu menu right right right'
+    'main main main footer footer footer';
+  color: white;
+}
+
+.simple-report-grid-container > div {
+  text-align: center;
+  font-size: 30px;
+}
+
+.simple-report-line {
+  border-bottom: 1px solid white;
+  margin-top: 0.5em;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.simple-report-current-weather {
+  padding-top: 0.5em;
+}
+
+.simple-report-wind {
+  padding-left: 0.75em;
+}
+
+.simple-report-icon {
+  padding-top: 0.5em;
+  margin-left: 2.5em;
+  width: 75%;
+}
+
+.simple-report-current-day {
+  padding-top: 1.5em;
+  padding-bottom: 0.3em;
+}
+
+.simple-report-temperature {
+  margin-bottom: 2em;
+}

@@ -21,9 +21,9 @@
 .weather-grid-container {
   display: grid;
   grid-template-areas:
-    "menu header header header header header"
-    "menu main main right right right"
-    "menu footer footer footer footer footer";
+    'menu header header header header header'
+    'menu main right right right right'
+    'menu footer footer footer footer footer';
   grid-gap: 10px;
   padding: 10px;
 }
@@ -31,7 +31,6 @@
 .weather-grid-container > div {
   background-color: rgba(94, 91, 91, 0.675);
   text-align: center;
-
-  padding: 175px 0;
+  /* padding: 175px 0; */
   font-size: 30px;
 }
