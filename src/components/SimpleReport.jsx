@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import moment from 'moment';
-import cloudy from '../assets/WeatherIcons/cloudy.svg';
 
 import './css/simplereport.css';
 
@@ -9,9 +8,8 @@ const SimpleReport = ({ weatherReport }) => {
   const [windSpeed, setWindSpeed] = useState('');
   const [weatherDescription, setWeatherDescription] = useState('');
   const [currentTemp, setCurrentTemp] = useState('');
-
-  console.log(weatherReport);
-  let currentDay = moment().format('dddd');
+  const [weatherIcon, setWeatherIcon] = useState(undefined);
+  const [currentDay, setCurrentDay] = useState('');
 
   const handleWindSpeed = useCallback(() => {
     let windDirection = weatherReport && weatherReport.wind_deg;
@@ -28,7 +26,7 @@ const SimpleReport = ({ weatherReport }) => {
     else if (windDirection > 168.75 && windDirection < 213.75)
       cardinalWindDirection = ' S';
     else if (windDirection > 213.75 && windDirection < 258.75)
-      cardinalWindDirection = 'SW';
+      cardinalWindDirection = ' SW';
     else if (windDirection > 258.75 && windDirection < 281.25)
       cardinalWindDirection = ' W';
     else if (windDirection > 281.25 && windDirection < 348.75)
@@ -40,13 +38,22 @@ const SimpleReport = ({ weatherReport }) => {
       );
   }, [weatherReport]);
 
+  const getWeatherIcon = useCallback(() => {
+    weatherReport &&
+      fetch(
+        `http://openweathermap.org/img/wn/${weatherReport.weather[0].icon}@2x.png`
+      ).then((data) => {
+        setWeatherIcon(data.url);
+      });
+  }, [weatherReport]);
+
   useEffect(() => {
     handleWindSpeed();
+    getWeatherIcon();
     setCurrentTemp(weatherReport && weatherReport.temp + ' \xB0F');
     setWeatherDescription(weatherReport && weatherReport.weather[0].main);
-  }, [handleWindSpeed, weatherReport]);
-
-  const getWeatherIcon = () => {};
+    setCurrentDay(moment().format('dddd').toUpperCase());
+  }, [handleWindSpeed, getWeatherIcon, weatherReport]);
 
   return (
     <div className='simple-report-grid-container'>
@@ -55,14 +62,20 @@ const SimpleReport = ({ weatherReport }) => {
         <div className='simple-report-line '></div>
       </div>
       <div className='simple-report-image-container'>
-        <img className='simple-report-icon' src={cloudy} alt='React Logo' />
+        <img
+          className='simple-report-icon'
+          src={weatherIcon}
+          alt='React Logo'
+        />
       </div>
       <div className='simple-report-wind-container'>
         <div className='simple-report-wind'>{windSpeed}</div>
       </div>
       <div className='simple-report-current-day-container'>
         <div className='simple-report-current-day'>{currentDay}</div>
-        <div>{weatherDescription}</div>
+        <div className='simple-report-weather-description'>
+          {weatherDescription}
+        </div>
       </div>
       <div className='simple-report-temperature-container'>
         <div className='simple-report-temperature'>{currentTemp}</div>

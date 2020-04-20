@@ -45,16 +45,21 @@
 }
 
 .simple-report-icon {
-  padding-top: 0.5em;
   margin-left: 2.5em;
   width: 75%;
 }
 
 .simple-report-current-day {
-  padding-top: 1.5em;
+  padding-top: 1em;
   padding-bottom: 0.3em;
+  padding-right: 1.5em;
+}
+
+.simple-report-weather-description {
+  padding-right: 1.5em;
 }
 
 .simple-report-temperature {
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
+  padding-right: 1.5em;
 }
