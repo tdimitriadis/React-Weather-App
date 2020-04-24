@@ -59,7 +59,7 @@ const SimpleReport = ({ weatherReport }) => {
     <div className='simple-report-grid-container'>
       <div className='simple-report-current-weather-container'>
         <div className='simple-report-current-weather'>Current Weather</div>
-        <div className='simple-report-line '></div>
+        <div className='simple-report-line'></div>
       </div>
       <div className='simple-report-image-container'>
         <img

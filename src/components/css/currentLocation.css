@@ -1,0 +1,44 @@
+.current-location-image {
+  grid-area: header;
+}
+.current-location-city {
+  grid-area: menu;
+  color: white;
+  text-align: left;
+  padding-top: 0.2em;
+}
+.current-location-state {
+  grid-area: main;
+  color: white;
+  text-align: left;
+}
+.current-location-change-location {
+  grid-area: right;
+  padding-top: 0.7em;
+  padding-right: 2vw;
+  text-align: right;
+  color: white;
+}
+
+.current-location-grid-container {
+  display: grid;
+  grid-template-areas:
+    'header menu right right right right'
+    'header main right right right right';
+  grid-template-columns: 9vw 15vw 3vw;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.current-location-grid-container > div {
+  font-size: 30px;
+}
+
+.current-location-city-name {
+  vertical-align: bottom;
+}
+
+.current-location-state-name {
+  font-size: 0.6em;
+  vertical-align: top;
+}
