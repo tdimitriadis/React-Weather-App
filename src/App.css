@@ -1,10 +1,10 @@
 body {
-  background-image: url('assets/Haze.jpg');
+  background-image: url("assets/weather.jpg");
   /* Full height */
-  box-sizing: border-box;
-  width: 100vw;
   height: 100%;
-  padding: 3px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
