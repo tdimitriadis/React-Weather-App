@@ -1,5 +1,6 @@
 .weather-container {
   margin: 3em 2em 3em 2em;
+  font-family: Roboto;
 }
 
 .weather-current-location {
@@ -16,21 +17,21 @@
 }
 .weather-seven-day {
   grid-area: footer;
+  padding: 5.2em;
 }
 
 .weather-grid-container {
   display: grid;
   grid-template-areas:
-    'menu header header header header header'
-    'menu main right right right right'
-    'menu footer footer footer footer footer';
+    "menu header header header header header"
+    "menu main right right right right"
+    "menu footer footer footer footer footer";
   grid-gap: 10px;
   padding: 10px;
 }
 
 .weather-grid-container > div {
-  background-color: rgba(151, 141, 141, 0.664);
+  background-color: rgba(123, 120, 120, 0.3);
   text-align: center;
-  /* padding: 175px 0; */
   font-size: 30px;
 }

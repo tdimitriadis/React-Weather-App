@@ -18,9 +18,9 @@
 .simple-report-grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'menu menu menu right right right'
-    'main main main footer footer footer';
+    "header header header header header header"
+    "menu menu menu right right right"
+    "main main main footer footer footer";
   color: white;
 }
 
@@ -38,14 +38,16 @@
 
 .simple-report-current-weather {
   padding-top: 0.5em;
+  font-size: 26px;
 }
 
 .simple-report-wind {
   padding-left: 1.25em;
+  font-size: 24px;
 }
 
 .simple-report-icon {
-  margin-left: 2.5em;
+  margin-left: 2em;
   width: 75%;
 }
 
@@ -53,13 +55,16 @@
   padding-top: 1em;
   padding-bottom: 0.3em;
   padding-right: 1.5em;
+  font-size: 24px;
 }
 
 .simple-report-weather-description {
   padding-right: 1.5em;
+  font-size: 24px;
 }
 
 .simple-report-temperature {
   margin-bottom: 0.5em;
   padding-right: 1.5em;
+  font-size: 24px;
 }
