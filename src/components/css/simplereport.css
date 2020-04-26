@@ -1,13 +1,11 @@
 .simple-report-current-weather-container {
   grid-area: header;
 }
-.simple-report-current-container {
+.simple-report-details-container {
   grid-area: menu;
+  padding: 0.5em 1em 1em 2em;
 }
 
-.simple-report-wind-container {
-  grid-area: main;
-}
 .simple-report-current-day-container {
   grid-area: right;
 }
@@ -19,8 +17,8 @@
   display: grid;
   grid-template-areas:
     "header header header header header header"
-    "menu menu menu right right right"
-    "main main main footer footer footer";
+    "right right right menu menu menu"
+    "footer footer footer menu menu menu";
   color: white;
 }
 
@@ -45,26 +43,29 @@
   padding-left: 1.25em;
   font-size: 24px;
 }
-
-.simple-report-icon {
-  margin-left: 2em;
-  width: 75%;
-}
-
 .simple-report-current-day {
   padding-top: 1em;
   padding-bottom: 0.3em;
-  padding-right: 1.5em;
+  padding-left: 1.5em;
   font-size: 24px;
 }
 
 .simple-report-weather-description {
-  padding-right: 1.5em;
-  font-size: 24px;
+  padding-left: 1.5em;
+  padding-bottom: 0.5em;
+  font-size: 18px;
 }
 
 .simple-report-temperature {
   margin-bottom: 0.5em;
-  padding-right: 1.5em;
+  padding-left: 1.5em;
+  font-size: 24px;
+}
+
+.simple-report-detail {
+  font-size: 14px;
+}
+
+.simple-report-detail-data {
   font-size: 24px;
 }
