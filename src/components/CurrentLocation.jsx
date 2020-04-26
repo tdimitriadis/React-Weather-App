@@ -1,24 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 
-import './css/currentLocation.css';
+import Button from "../components/Button.jsx";
+import "./css/currentLocation.css";
 
-const CurrentLocation = ({ location }) => {
+const CurrentLocation = ({ location, weatherReport }) => {
+  const [weatherIcon, setWeatherIcon] = useState(undefined);
+
+  const getWeatherIcon = useCallback(() => {
+    weatherReport &&
+      fetch(
+        `http://openweathermap.org/img/wn/${weatherReport.weather[0].icon}@2x.png`
+      ).then((data) => {
+        setWeatherIcon(data.url);
+      });
+  }, [weatherReport]);
+
+  useEffect(() => {
+    getWeatherIcon();
+  }, [getWeatherIcon, weatherReport]);
+
   return (
-    <div className='current-location-grid-container'>
-      <div className='current-location-image'>Image</div>
-      <div className='current-location-city'>
-        <span className='current-location-city-name'>
-          {location.default &&
-            location.default.city.charAt(0).toUpperCase() +
-              location.default.city.slice(1).toLowerCase()}
+    <div className="current-location-grid-container">
+      <div className="current-location-image">
+        <img
+          className="current-location-icon"
+          src={weatherIcon}
+          alt="Weather Icon"
+        />
+      </div>
+      <div className="current-location-city">
+        <span className="current-location-city-name">
+          {location && location.city}
         </span>
       </div>
-      <div className='current-location-state'>
-        <span className='current-location-state-name'>
-          City in {location.default && location.default.statename}
+      <div className="current-location-state">
+        <span className="current-location-state-name">
+          City in {location && location.statename}
         </span>
       </div>
-      <div className='current-location-change-location'>Change Location</div>
+      <div className="current-location-change-location">
+        <Button value="Change Location" />
+      </div>
     </div>
   );
 };

@@ -1,11 +1,16 @@
 .current-location-image {
   grid-area: header;
 }
+
+.current-location-icon {
+  width: 100%;
+}
+
 .current-location-city {
   grid-area: menu;
   color: white;
   text-align: left;
-  padding-top: 0.2em;
+  padding-top: 0.6em;
 }
 .current-location-state {
   grid-area: main;
@@ -14,7 +19,7 @@
 }
 .current-location-change-location {
   grid-area: right;
-  padding-top: 0.7em;
+  padding-top: 1em;
   padding-right: 2vw;
   text-align: right;
   color: white;
@@ -23,19 +28,14 @@
 .current-location-grid-container {
   display: grid;
   grid-template-areas:
-    'header menu right right right right'
-    'header main right right right right';
+    "header menu right right right right"
+    "header main right right right right";
   grid-template-columns: 9vw 15vw 3vw;
-  grid-gap: 10px;
   padding: 10px;
 }
 
-.current-location-grid-container > div {
-  font-size: 30px;
-}
-
 .current-location-city-name {
-  vertical-align: bottom;
+  font-size: 0.9em;
 }
 
 .current-location-state-name {

@@ -1,0 +1,28 @@
+.button-input {
+  color: white;
+  background-color: rgba(7, 23, 33, 0.6);
+  font-size: 0.5em;
+  font-weight: 800;
+  border-radius: 15px;
+  padding: 0.8em;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-family: Roboto;
+  vertical-align: sub;
+}
+
+.button-input:hover {
+  background-color: rgba(11, 37, 53, 0.6);
+}
+
+.button-input:active {
+  background-color: rgba(17, 59, 85, 0.6);
+}
+
+.button-image {
+  vertical-align: sub;
+  height: 20px;
+  width: 20px;
+  padding-right: 0.3em;
+}

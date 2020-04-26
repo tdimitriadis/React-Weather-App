@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import * as data from "../assets/testDataStockton.json";
-import * as locationData from "../assets/locationTestData.json";
+import locationData from "../assets/locationTestData.json";
 import SimpleReport from "../components/SimpleReport";
 import CurrentLocation from "../components/CurrentLocation";
 
@@ -30,14 +30,17 @@ const Weather = () => {
   useEffect(() => {
     setWeatherReport(data.default);
     setLocation(locationData);
+    console.log(locationData);
   }, []);
 
-  console.log(location);
   return (
     <div className="weather-container">
       <div className="weather-grid-container">
         <div className="weather-current-location">
-          <CurrentLocation location={location} />
+          <CurrentLocation
+            location={location}
+            weatherReport={weatherReport.current}
+          />
         </div>
         <div className="weather-around-the-world">Around the world</div>
         <div className="weather-current">
