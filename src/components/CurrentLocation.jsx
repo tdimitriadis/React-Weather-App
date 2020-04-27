@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 
-import Button from "../components/Button.jsx";
-import "./css/currentLocation.css";
+import Button from '../components/Button.jsx';
+import './css/currentLocation.css';
 
 const CurrentLocation = ({ location, weatherReport }) => {
   const [weatherIcon, setWeatherIcon] = useState(undefined);
@@ -32,14 +32,14 @@ const CurrentLocation = ({ location, weatherReport }) => {
         <span className="current-location-city-name">
           {location && location.city}
         </span>
-      </div>
-      <div className="current-location-state">
-        <span className="current-location-state-name">
+        <div className="current-location-state-name">
           City in {location && location.statename}
-        </span>
+        </div>
       </div>
       <div className="current-location-change-location">
-        <Button value="Change Location" />
+        <span className="current-location-button">
+          <Button value="Change Location" />
+        </span>
       </div>
     </div>
   );

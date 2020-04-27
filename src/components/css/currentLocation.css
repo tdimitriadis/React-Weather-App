@@ -11,34 +11,44 @@
   color: white;
   text-align: left;
   padding-top: 0.6em;
+  position: relative;
 }
-.current-location-state {
-  grid-area: main;
-  color: white;
-  text-align: left;
-}
+
 .current-location-change-location {
   grid-area: right;
-  padding-top: 1em;
-  padding-right: 2vw;
-  text-align: right;
   color: white;
+  position: relative;
 }
 
 .current-location-grid-container {
   display: grid;
   grid-template-areas:
-    "header menu right right right right"
-    "header main right right right right";
-  grid-template-columns: 9vw 15vw 3vw;
+    'header menu right'
+    'header menu right';
+  grid-template-columns: 9vw 15vw 55vw;
   padding: 10px;
 }
 
 .current-location-city-name {
   font-size: 0.9em;
+  position: absolute;
+  top: 50%;
+  height: 10em;
+  margin-top: -1.4em;
 }
 
 .current-location-state-name {
   font-size: 0.6em;
-  vertical-align: top;
+  position: absolute;
+  top: 50%;
+  height: 10em;
+  margin-top: 0.6em;
+}
+
+.current-location-button {
+  font-size: 0.9em;
+  position: absolute;
+  top: 50%;
+  height: 10em;
+  margin-top: -1.1em;
 }

@@ -4,12 +4,11 @@
   font-size: 0.5em;
   font-weight: 800;
   border-radius: 15px;
-  padding: 0.8em;
+  padding: 1.5em;
   border: none;
   cursor: pointer;
   outline: none;
   font-family: Roboto;
-  vertical-align: sub;
 }
 
 .button-input:hover {
@@ -25,4 +24,8 @@
   height: 20px;
   width: 20px;
   padding-right: 0.3em;
+}
+
+.button-text {
+  font-size: 20px;
 }
