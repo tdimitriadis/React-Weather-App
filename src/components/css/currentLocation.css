@@ -25,7 +25,7 @@
   grid-template-areas:
     'header menu right'
     'header menu right';
-  grid-template-columns: 9vw 15vw 55vw;
+  grid-template-columns: 9vw 20vw 55vw;
   padding: 10px;
 }
 
@@ -49,6 +49,7 @@
   font-size: 0.9em;
   position: absolute;
   top: 50%;
+  right: 4%;
   height: 10em;
   margin-top: -1.1em;
 }
