@@ -16,9 +16,9 @@
 .simple-report-grid-container {
   display: grid;
   grid-template-areas:
-    "header header header header header header"
-    "right right right menu menu menu"
-    "footer footer footer menu menu menu";
+    'header header header header header header'
+    'right right right menu menu menu'
+    'footer footer footer menu menu menu';
   color: white;
 }
 

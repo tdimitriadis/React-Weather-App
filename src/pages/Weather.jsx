@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import * as data from "../assets/testDataStockton.json";
-import locationData from "../assets/locationTestData.json";
-import SimpleReport from "../components/SimpleReport";
-import CurrentLocation from "../components/CurrentLocation";
+import * as data from '../assets/testDataStockton.json';
+import locationData from '../assets/locationTestData.json';
+import SimpleReport from '../components/SimpleReport';
+import CurrentLocation from '../components/CurrentLocation';
 
-import "./css/weather.css";
+import './css/weather.css';
 
 const Weather = () => {
   const [weatherReport, setWeatherReport] = useState({});
   const [location, setLocation] = useState({});
-  const APIKEY = "4c960f34f15cb8711899b9bf6b4f763d";
+  const APIKEY = '4c960f34f15cb8711899b9bf6b4f763d';
 
   // useEffect(() => {
   //   fetch(
@@ -25,6 +25,11 @@ const Weather = () => {
   //     .then((data) => {
   //       setLocation(data);
   //     });
+  //   fetch(`https://geocode.xyz/stockton+california?json=1`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
   // }, []);
 
   useEffect(() => {
@@ -35,6 +40,8 @@ const Weather = () => {
 
   return (
     <div className="weather-container">
+      <div className="weather-modal">Modal</div>
+
       <div className="weather-grid-container">
         <div className="weather-current-location">
           <CurrentLocation

@@ -8,7 +8,7 @@
 
 .current-location-city {
   grid-area: menu;
-  color: white;
+
   text-align: left;
   padding-top: 0.6em;
   position: relative;
@@ -16,7 +16,6 @@
 
 .current-location-change-location {
   grid-area: right;
-  color: white;
   position: relative;
 }
 
@@ -27,6 +26,7 @@
     'header menu right';
   grid-template-columns: 9vw 20vw 55vw;
   padding: 10px;
+  color: white;
 }
 
 .current-location-city-name {

@@ -23,9 +23,9 @@
 .weather-grid-container {
   display: grid;
   grid-template-areas:
-    "menu header header header header header"
-    "menu main right right right right"
-    "menu footer footer footer footer footer";
+    'menu header header header header header'
+    'menu main right right right right'
+    'menu footer footer footer footer footer';
   grid-gap: 10px;
   padding: 10px;
 }
@@ -34,4 +34,15 @@
   background-color: rgba(123, 120, 120, 0.3);
   text-align: center;
   font-size: 30px;
+}
+
+.weather-modal {
+  padding: 2em 10em 2em 10em;
+  top: 22%;
+  position: absolute;
+  left: 44%;
+
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65) !important;
 }
