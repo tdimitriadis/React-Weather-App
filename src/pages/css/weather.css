@@ -32,17 +32,22 @@
 
 .weather-grid-container > div {
   background-color: rgba(123, 120, 120, 0.3);
-  text-align: center;
+
   font-size: 30px;
+  border-radius: 15px;
+}
+.weather-modal {
+  padding: 7em 15em 7em 15em;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  color: black;
+  background: white;
+  box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.7);
 }
 
-.weather-modal {
-  padding: 2em 10em 2em 10em;
-  top: 22%;
-  position: absolute;
-  left: 44%;
-
-  border-radius: 15px;
-  background: white;
-  box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65) !important;
+.hide {
+  display: none;
 }

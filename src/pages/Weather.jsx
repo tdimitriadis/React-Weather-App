@@ -4,58 +4,81 @@ import * as data from '../assets/testDataStockton.json';
 import locationData from '../assets/locationTestData.json';
 import SimpleReport from '../components/SimpleReport';
 import CurrentLocation from '../components/CurrentLocation';
+import Modal from '../components/Modal.jsx';
 
 import './css/weather.css';
 
 const Weather = () => {
   const [weatherReport, setWeatherReport] = useState({});
   const [location, setLocation] = useState({});
-  const APIKEY = '4c960f34f15cb8711899b9bf6b4f763d';
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://api.openweathermap.org/data/2.5/onecall?lat=37.9577&lon=-121.2908&units=imperial&appid=${APIKEY}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setWeatherReport(data);
-  //     });
-  //   fetch(`https://geocode.xyz/37.9577,-121.2908?geoit=json`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setLocation(data);
-  //     });
-  //   fetch(`https://geocode.xyz/stockton+california?json=1`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // }, []);
+  const [modal, setModal] = useState(false);
+  const OPEN_WEATHER_API_KEY = '4c960f34f15cb8711899b9bf6b4f763d';
+  const GOOGLE_API_KEY = 'AIzaSyCjnVGMp-UhjNEufBOkGHO4Poy4cz7TAdE';
 
   useEffect(() => {
-    setWeatherReport(data.default);
-    setLocation(locationData);
-    console.log(locationData);
+    fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=37.7749295&lon=-122.4194155&units=imperial&appid=${OPEN_WEATHER_API_KEY}`,
+    )
+      .then(res => res.json())
+      .then(data => {
+        setWeatherReport(data);
+        setLocation({ statename: 'California', city: 'San Francisco' });
+      });
   }, []);
 
-  return (
-    <div className="weather-container">
-      <div className="weather-modal">Modal</div>
+  // useEffect(() => {
+  //   setWeatherReport(data.default);
+  //   setLocation(locationData);
+  //   console.log(locationData);
+  // }, []);
 
-      <div className="weather-grid-container">
-        <div className="weather-current-location">
+  const handleChangeLocation = loc => {
+    let city = Object.values(loc);
+    let state = Object.keys(loc);
+
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${city},+${state}&key=${GOOGLE_API_KEY}`,
+    )
+      .then(res => res.json())
+      .then(data => {
+        let geoLocation = data.results[0].geometry.location;
+        let lon = geoLocation.lng;
+        let lat = geoLocation.lat;
+        setLocation({ statename: state, city: city });
+        fetch(
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`,
+        )
+          .then(res => res.json())
+          .then(data => {
+            setWeatherReport(data);
+          });
+      });
+  };
+
+  return (
+    <div className='weather-container'>
+      <div className='weather-grid-container'>
+        <div className='weather-current-location'>
           <CurrentLocation
             location={location}
             weatherReport={weatherReport.current}
+            click={() => setModal(true)}
           />
         </div>
-        <div className="weather-around-the-world">Around the world</div>
-        <div className="weather-current">
+        <div className='weather-around-the-world'>Around the world</div>
+        <div className='weather-current'>
           <SimpleReport weatherReport={weatherReport.current} />
         </div>
-        <div className="weather-forecast">Forecast</div>
-        <div className="weather-seven-day">Seven day</div>
+        <div className='weather-forecast'>Forecast</div>
+        <div className='weather-seven-day'>Seven day</div>
       </div>
+      {modal && (
+        <Modal
+          cancel={() => setModal(false)}
+          changeLocation={loc => handleChangeLocation(loc)}
+        />
+      )}
     </div>
   );
 };

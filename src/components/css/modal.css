@@ -1,0 +1,92 @@
+.modal-grid-header {
+  grid-area: header;
+  background-color: rgba(7, 23, 33, 0.8);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: grid;
+}
+
+.modal-text-input {
+  grid-area: body;
+  justify-self: center;
+  padding-top: 2em;
+}
+
+.modal-button-container {
+  grid-area: button;
+  justify-self: end;
+}
+
+.modal-grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header'
+    'body body body'
+    'button button button';
+  grid-template-columns: 9vw 20vw;
+  grid-template-rows: 3em 5em 3em;
+}
+
+.modal-container {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  color: black;
+  background: white;
+  box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.7);
+  background-color: rgb(158, 158, 158);
+}
+
+.modal-input {
+  border-radius: 5px;
+  padding: 0.5em;
+  margin-right: 1em;
+  border: rgba(7, 23, 33, 0.8);
+  background-color: rgba(229, 245, 255, 0.8);
+}
+
+.modal-label {
+  font-size: 1.24rem;
+  font-family: Roboto;
+  margin-right: 0.5em;
+  vertical-align: top;
+}
+
+.modal-button {
+  padding: 0.5em;
+  border-radius: 5px;
+  border: rgba(7, 23, 33, 0.8);
+  background-color: rgba(7, 23, 33, 0.8);
+  color: white;
+  font-family: Roboto;
+  font-size: 14px;
+  margin-right: 1rem;
+}
+
+.modal-button:hover {
+  background-color: rgba(11, 37, 53, 0.8);
+}
+
+.modal-button:active {
+  background-color: rgba(17, 59, 85, 0.8);
+}
+
+.modal-grid-header-text {
+  padding-left: 1em;
+  font-size: 20px;
+  color: white;
+  font-family: Roboto;
+  padding-top: 0.5em;
+}
+
+.modal-disabled {
+  padding: 0.5em;
+  border-radius: 5px;
+  border: rgba(7, 23, 33, 0.8);
+  background-color: rgba(7, 23, 33, 0.5);
+  font-family: Roboto;
+  font-size: 14px;
+  margin-right: 1rem;
+}

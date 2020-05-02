@@ -25,16 +25,25 @@
     'header menu right'
     'header menu right';
   grid-template-columns: 9vw 20vw 55vw;
-  padding: 10px;
   color: white;
 }
 
 .current-location-city-name {
-  font-size: 0.9em;
+  font-size: 1.2em;
   position: absolute;
-  top: 50%;
+  top: 58%;
   height: 10em;
   margin-top: -1.4em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .current-location-city-name {
+    font-size: 0.8em;
+    position: absolute;
+    top: 52%;
+    height: 10em;
+    margin-top: -1.4em;
+  }
 }
 
 .current-location-state-name {

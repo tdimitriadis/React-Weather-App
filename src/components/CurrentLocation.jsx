@@ -3,14 +3,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Button from '../components/Button.jsx';
 import './css/currentLocation.css';
 
-const CurrentLocation = ({ location, weatherReport }) => {
+const CurrentLocation = ({ location, weatherReport, click }) => {
   const [weatherIcon, setWeatherIcon] = useState(undefined);
 
   const getWeatherIcon = useCallback(() => {
     weatherReport &&
       fetch(
-        `http://openweathermap.org/img/wn/${weatherReport.weather[0].icon}@2x.png`
-      ).then((data) => {
+        `http://openweathermap.org/img/wn/${weatherReport.weather[0].icon}@2x.png`,
+      ).then(data => {
         setWeatherIcon(data.url);
       });
   }, [weatherReport]);
@@ -20,25 +20,25 @@ const CurrentLocation = ({ location, weatherReport }) => {
   }, [getWeatherIcon, weatherReport]);
 
   return (
-    <div className="current-location-grid-container">
-      <div className="current-location-image">
+    <div className='current-location-grid-container'>
+      <div className='current-location-image'>
         <img
-          className="current-location-icon"
+          className='current-location-icon'
           src={weatherIcon}
-          alt="Weather Icon"
+          alt='Weather Icon'
         />
       </div>
-      <div className="current-location-city">
-        <span className="current-location-city-name">
+      <div className='current-location-city'>
+        <span className='current-location-city-name'>
           {location && location.city}
         </span>
-        <div className="current-location-state-name">
+        <div className='current-location-state-name'>
           City in {location && location.statename}
         </div>
       </div>
-      <div className="current-location-change-location">
-        <span className="current-location-button">
-          <Button value="Change Location" />
+      <div className='current-location-change-location'>
+        <span className='current-location-button'>
+          <Button onClick={click} value='Change Location' />
         </span>
       </div>
     </div>
