@@ -1,0 +1,71 @@
+.hourly-forecast-header {
+  grid-area: header;
+  text-align: center;
+  color: white;
+}
+.hourly-forecast-one {
+  grid-area: one;
+}
+.hourly-forecast-two {
+  grid-area: two;
+}
+.hourly-forecast-three {
+  grid-area: three;
+}
+.hourly-forecast-four {
+  grid-area: four;
+}
+.hourly-forecast-five {
+  grid-area: five;
+}
+.hourly-forecast-six {
+  grid-area: six;
+}
+.hourly-forecast-seven {
+  grid-area: seven;
+}
+.hourly-forecast-eight {
+  grid-area: eight;
+}
+.hourly-forecast-nine {
+  grid-area: nine;
+}
+.hourly-forecast-ten {
+  grid-area: ten;
+}
+.hourly-forecast-eleven {
+  grid-area: eleven;
+}
+.hourly-forecast-twelve {
+  grid-area: twelve;
+}
+.hourly-forecast-thirteen {
+  grid-area: thirteen;
+}
+.hourly-forecast-fourteen {
+  grid-area: fourteen;
+}
+
+.hourly-forecast-grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header header'
+    'one two three four five six seven'
+    'eight nine ten eleven twelve thirteen fourteen';
+  grid-template-rows: 2em 2em 2em;
+  grid-gap: 10px;
+  padding: 0.5em 1em 1em 1em;
+}
+
+.hourly-forecast-grid-container > div:not(:first-child) {
+  border: 1px solid #ffffffb9;
+  font-size: 30px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+}
+
+.hourly-forecast-line {
+  border-bottom: 1px solid white;
+  margin-top: 0.5em;
+}

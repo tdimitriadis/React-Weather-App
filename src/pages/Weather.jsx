@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import * as data from '../assets/testDataStockton.json';
 import * as locationData from '../assets/testData.json';
 import SimpleReport from '../components/SimpleReport';
 import CurrentLocation from '../components/CurrentLocation';
 import Modal from '../components/Modal.jsx';
+import HourlyForecast from '../components/HourlyForecast';
 
 import './css/weather.css';
 
@@ -13,8 +13,8 @@ const Weather = () => {
   const [location, setLocation] = useState({});
 
   const [modal, setModal] = useState(false);
-  const OPEN_WEATHER_API_KEY = '4c960f34f15cb8711899b9bf6b4f763d';
-  const GOOGLE_API_KEY = 'AIzaSyCjnVGMp-UhjNEufBOkGHO4Poy4cz7TAdE';
+  const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
+  const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
   // useEffect(() => {
   //   fetch(
@@ -69,7 +69,9 @@ const Weather = () => {
         <div className='weather-current'>
           <SimpleReport weatherReport={weatherReport.current} />
         </div>
-        <div className='weather-forecast'>Forecast</div>
+        <div className='weather-forecast'>
+          <HourlyForecast />
+        </div>
         <div className='weather-seven-day'>Seven day</div>
       </div>
       {modal && (
