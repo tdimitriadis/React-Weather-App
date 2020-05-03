@@ -1,0 +1,38 @@
+.seven-forecast-one {
+  grid-area: one;
+}
+.seven-forecast-two {
+  grid-area: two;
+}
+.seven-forecast-three {
+  grid-area: three;
+}
+.seven-forecast-four {
+  grid-area: four;
+}
+.seven-forecast-five {
+  grid-area: five;
+}
+.seven-forecast-six {
+  grid-area: six;
+}
+.seven-forecast-seven {
+  grid-area: seven;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+
+.seven-forecast-grid-container {
+  display: grid;
+  grid-template-areas: 'one two three four five six seven';
+  grid-template-columns: 5.7em 5.7em 5.7em 5.7em 5.7em 5.7em 5.7em;
+  grid-template-rows: 8em;
+}
+
+.seven-forecast-grid-container > div:not(:last-child) {
+  border-right: 1px solid #ffffffb9;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}

@@ -17,7 +17,7 @@
 }
 .weather-seven-day {
   grid-area: footer;
-  padding: 5.2em;
+  padding: 0.5em 0 0.5em 0;
 }
 
 .weather-grid-container {

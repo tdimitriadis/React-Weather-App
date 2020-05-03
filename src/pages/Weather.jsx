@@ -5,6 +5,7 @@ import SimpleReport from '../components/SimpleReport';
 import CurrentLocation from '../components/CurrentLocation';
 import Modal from '../components/Modal.jsx';
 import HourlyForecast from '../components/HourlyForecast';
+import SevenForecast from '../components/SevenForecast.jsx';
 
 import './css/weather.css';
 
@@ -75,7 +76,9 @@ const Weather = () => {
         <div className='weather-forecast'>
           <HourlyForecast />
         </div>
-        <div className='weather-seven-day'>Seven day</div>
+        <div className='weather-seven-day'>
+          <SevenForecast />
+        </div>
       </div>
       {modal && (
         <Modal
