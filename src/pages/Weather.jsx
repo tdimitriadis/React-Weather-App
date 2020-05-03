@@ -11,10 +11,10 @@ import './css/weather.css';
 const Weather = () => {
   const [weatherReport, setWeatherReport] = useState({});
   const [location, setLocation] = useState({});
-
   const [modal, setModal] = useState(false);
-  const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
-  const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+
+  const OPEN_WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
+  const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
   // useEffect(() => {
   //   fetch(
@@ -52,6 +52,9 @@ const Weather = () => {
           .then(data => {
             setWeatherReport(data);
           });
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 

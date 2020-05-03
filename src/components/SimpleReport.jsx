@@ -5,7 +5,6 @@ import moment from 'moment';
 import './css/simplereport.css';
 
 const SimpleReport = ({ weatherReport }) => {
-  console.log('weatherReport: ', weatherReport);
   const [windSpeed, setWindSpeed] = useState('');
   const [weatherDescription, setWeatherDescription] = useState('');
   const [currentTemp, setCurrentTemp] = useState('');
