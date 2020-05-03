@@ -5,6 +5,7 @@ import moment from 'moment';
 import './css/simplereport.css';
 
 const SimpleReport = ({ weatherReport }) => {
+  console.log('weatherReport: ', weatherReport);
   const [windSpeed, setWindSpeed] = useState('');
   const [weatherDescription, setWeatherDescription] = useState('');
   const [currentTemp, setCurrentTemp] = useState('');
@@ -40,7 +41,7 @@ const SimpleReport = ({ weatherReport }) => {
   useEffect(() => {
     handleWindSpeed();
 
-    setCurrentTemp(weatherReport && weatherReport.temp + ' \xB0F');
+    setCurrentTemp(weatherReport && Math.round(weatherReport.temp) + '\xB0F');
     setWeatherDescription(weatherReport && weatherReport.weather[0].main);
     setCurrentDay(moment().format('dddd').toUpperCase());
   }, [handleWindSpeed, weatherReport]);
@@ -54,21 +55,27 @@ const SimpleReport = ({ weatherReport }) => {
         <div className='simple-report-line'></div>
       </div>
       <div className='simple-report-details-container'>
-        <div>
+        <div className='simple-report-detail-container'>
           <span className='simple-report-detail'>Humidity: </span>
           <span className='simple-report-detail-data'>
             {weatherReport?.humidity + '%'}
           </span>
         </div>
-        <div className='simple-report-wind'>
+        <div className='simple-report-detail-container'>
           <span className='simple-report-detail'>Wind: </span>
           <span className='simple-report-detail-data'>{windSpeed}</span>
         </div>
-        <div className='simple-report-wind'>
+        <div className='simple-report-detail-container'>
           <span className='simple-report-detail'>Pressure: </span>
           <span className='simple-report-detail-data'>
             {weatherReport &&
               (weatherReport.pressure * 0.02953).toFixed(2) + ' in'}
+          </span>
+        </div>
+        <div className='simple-report-detail-container'>
+          <span className='simple-report-detail'>Feels Like: </span>
+          <span className='simple-report-detail-data'>
+            {weatherReport && Math.round(weatherReport.feels_like) + '\xB0F'}
           </span>
         </div>
       </div>

@@ -1,5 +1,5 @@
 .weather-container {
-  margin: 3em 2em 3em 2em;
+  margin: 3vh 2vw 3vh 2vw;
   font-family: Roboto;
 }
 
@@ -50,4 +50,11 @@
 
 .hide {
   display: none;
+}
+
+@media only screen and (max-width: 1105px) {
+  .weather-container {
+    margin: 3vh 4vw 3vh 2vw;
+    font-family: Roboto;
+  }
 }

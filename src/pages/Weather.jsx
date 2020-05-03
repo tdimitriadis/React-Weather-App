@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import * as data from '../assets/testDataStockton.json';
-import locationData from '../assets/locationTestData.json';
+import * as locationData from '../assets/testData.json';
 import SimpleReport from '../components/SimpleReport';
 import CurrentLocation from '../components/CurrentLocation';
 import Modal from '../components/Modal.jsx';
@@ -16,22 +16,21 @@ const Weather = () => {
   const OPEN_WEATHER_API_KEY = '4c960f34f15cb8711899b9bf6b4f763d';
   const GOOGLE_API_KEY = 'AIzaSyCjnVGMp-UhjNEufBOkGHO4Poy4cz7TAdE';
 
-  useEffect(() => {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=37.7749295&lon=-122.4194155&units=imperial&appid=${OPEN_WEATHER_API_KEY}`,
-    )
-      .then(res => res.json())
-      .then(data => {
-        setWeatherReport(data);
-        setLocation({ statename: 'California', city: 'San Francisco' });
-      });
-  }, []);
-
   // useEffect(() => {
-  //   setWeatherReport(data.default);
-  //   setLocation(locationData);
-  //   console.log(locationData);
+  //   fetch(
+  //     `https://api.openweathermap.org/data/2.5/onecall?lat=37.7749295&lon=-122.4194155&units=imperial&appid=${OPEN_WEATHER_API_KEY}`,
+  //   )
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setWeatherReport(data);
+  //       setLocation({ statename: 'California', city: 'San Francisco' });
+  //     });
   // }, []);
+
+  useEffect(() => {
+    setWeatherReport(locationData.default);
+    setLocation({ statename: 'California', city: 'San Francisco' });
+  }, []);
 
   const handleChangeLocation = loc => {
     let city = Object.values(loc);

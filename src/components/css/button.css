@@ -29,3 +29,15 @@
 .button-text {
   font-size: 20px;
 }
+
+@media only screen and (max-width: 1105px) {
+  .button-text {
+    font-size: 17px;
+  }
+  .button-image {
+    vertical-align: unset;
+    height: 15px;
+    width: 15px;
+    padding-right: 0.3em;
+  }
+}
