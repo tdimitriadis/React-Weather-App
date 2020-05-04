@@ -24,12 +24,12 @@
   grid-template-areas:
     'header menu right'
     'header menu right';
-  grid-template-columns: 9vw 20vw 55vw;
+  grid-template-columns: 9vw 20vw 56vw;
   color: white;
 }
 
 .current-location-city-name {
-  font-size: 1.2em;
+  font-size: 2.5vw;
   position: absolute;
   top: 58%;
   height: 10em;
@@ -38,46 +38,19 @@
 }
 
 .current-location-button {
-  font-size: 0.9em;
+  font-size: 2vw;
   position: absolute;
-  top: 54%;
+  top: 5.4vw;
   right: 4%;
   height: 10em;
   margin-top: -1.1em;
 }
 
 .current-location-state-name {
-  font-size: 0.6em;
+  font-size: 1.4vw;
   position: absolute;
   top: 50%;
   height: 10em;
   margin-top: 0.6em;
   padding-left: 1em;
-}
-
-@media only screen and (max-width: 1105px) {
-  .current-location-city-name {
-    font-size: 0.8em;
-    position: absolute;
-    top: 52%;
-    height: 10em;
-    margin-top: -1.4em;
-    padding-left: 0.7em;
-  }
-  .current-location-button {
-    font-size: 0.9em;
-    position: absolute;
-    top: 57%;
-    right: 4%;
-    height: 10em;
-    margin-top: -1.1em;
-  }
-  .current-location-state-name {
-    font-size: 0.5em;
-    position: absolute;
-    top: 50%;
-    height: 10em;
-    margin-top: 0.6em;
-    padding-left: 1em;
-  }
 }

@@ -23,7 +23,7 @@
     'header header header'
     'body body body'
     'button button button';
-  grid-template-columns: 9vw 20vw;
+  grid-template-columns: 9em 20em;
   grid-template-rows: 3em 5em 3em;
 }
 

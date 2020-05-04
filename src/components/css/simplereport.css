@@ -3,7 +3,7 @@
 }
 .simple-report-details-container {
   grid-area: menu;
-  padding: 0.6em 0em 1em 2em;
+  padding: 0.6vw 0em 1vw 3vw;
 }
 
 .simple-report-current-day-container {
@@ -16,9 +16,10 @@
 .simple-report-grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'right right right menu menu menu'
-    'footer footer footer menu menu menu';
+    'header  header'
+    'right  menu'
+    'footer  menu';
+  grid-template-columns: 10vw 12vw;
   color: white;
 }
 
@@ -36,37 +37,37 @@
 
 .simple-report-current-weather {
   padding-top: 0.5em;
-  font-size: 26px;
+  font-size: 2vw;
 }
 
 .simple-report-detail-container {
   text-align: left;
-  font-size: 24px;
+  font-size: 2vw;
 }
 .simple-report-current-day {
-  padding-top: 1em;
+  padding-top: 1.5vw;
   padding-bottom: 0.3em;
   padding-left: 1.5em;
-  font-size: 24px;
+  font-size: 1.8vw;
 }
 
 .simple-report-weather-description {
-  padding-left: 1.5em;
+  padding-left: 2.4vw;
   padding-bottom: 0.5em;
-  font-size: 18px;
+  font-size: 1.5vw;
 }
 
 .simple-report-temperature {
   margin-bottom: 0.5em;
   padding-left: 1em;
-  font-size: 35px;
+  font-size: 2vw;
 }
 
 .simple-report-detail {
-  font-size: 14px;
+  font-size: 0.8vw;
   color: #d3d3d3;
 }
 
 .simple-report-detail-data {
-  font-size: 24px;
+  font-size: 1.3vw;
 }

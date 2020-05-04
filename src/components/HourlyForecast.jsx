@@ -6,7 +6,7 @@ const HourlyForecast = () => {
   return (
     <div className='hourly-forecast-grid-container'>
       <div className='hourly-forecast-header'>
-        <div>Forecast</div>
+        <div className='hourly-forecast-title'>Forecast</div>
         <div className='hourly-forecast-line'></div>
       </div>
       <div className='hourly-forecast-one'>1</div>

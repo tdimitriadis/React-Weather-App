@@ -1,5 +1,4 @@
 .weather-container {
-  margin: 3vh 2vw 3vh 2vw;
   font-family: Roboto;
 }
 
@@ -26,8 +25,10 @@
     'menu header header header header header'
     'menu main right right right right'
     'menu footer footer footer footer footer';
+  grid-template-columns: 10vw 23vw 17vw 13vw 13vw 16vw;
+  grid-template-rows: 9.5vw 17vw 19vw;
   grid-gap: 10px;
-  padding: 10px;
+  margin: 2vw 0 2vw 2vw;
 }
 
 .weather-grid-container > div {
@@ -52,9 +53,26 @@
   display: none;
 }
 
-@media only screen and (max-width: 1105px) {
-  .weather-container {
-    margin: 3vh 4vw 3vh 2vw;
-    font-family: Roboto;
+@media only screen and (min-width: 1920px) {
+  .weather-grid-container {
+    margin: 2vw 0 2vw 2.7vw;
+  }
+}
+
+@media only screen and (max-width: 1920px) {
+  .weather-grid-container {
+    margin: 2vw 0 2vw 2.4vw;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .weather-grid-container {
+    margin: 2vw 0 2vw 1.6vw;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .weather-grid-container {
+    margin: 2vw 0 2vw 0.8vw;
   }
 }
