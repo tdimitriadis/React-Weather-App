@@ -26,14 +26,12 @@
     'menu main right right right right'
     'menu footer footer footer footer footer';
   grid-template-columns: 10vw 23vw 17vw 13vw 13vw 16vw;
-  grid-template-rows: 9.5vw 17vw 19vw;
+  grid-template-rows: 9.5vw 15vw 18vw;
   grid-gap: 10px;
-  margin: 2vw 0 2vw 2vw;
 }
 
 .weather-grid-container > div {
   background-color: rgba(123, 120, 120, 0.3);
-
   font-size: 30px;
   border-radius: 15px;
 }
@@ -62,6 +60,12 @@
 @media only screen and (max-width: 1920px) {
   .weather-grid-container {
     margin: 2vw 0 2vw 2.4vw;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .weather-grid-container {
+    margin: 2vw 0 2vw 2vw;
   }
 }
 

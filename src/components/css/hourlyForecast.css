@@ -52,8 +52,8 @@
     'header header header header header header header'
     'one two three four five six seven'
     'eight nine ten eleven twelve thirteen fourteen';
-  grid-gap: 10px;
-  grid-template-rows: 5vw 4vw 4vw;
+  grid-gap: 0.5vw;
+  grid-template-rows: 4.5vw 4vw 4vw;
   padding: 0.5vw 1vw 1vw 1vw;
 }
 
@@ -71,5 +71,5 @@
 
 .hourly-forecast-line {
   border-bottom: 1px solid white;
-  margin-top: 0.5em;
+  margin-top: 1vw;
 }

@@ -30,13 +30,12 @@
 
 .simple-report-line {
   border-bottom: 1px solid white;
-  margin-top: 0.5em;
-  margin-right: 1em;
-  margin-left: 1em;
+  margin-top: 1vw;
+  margin-left: 1vw;
 }
 
 .simple-report-current-weather {
-  padding-top: 0.5em;
+  padding-top: 0.6vw;
   font-size: 2vw;
 }
 
