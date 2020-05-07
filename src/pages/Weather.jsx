@@ -74,7 +74,7 @@ const Weather = () => {
           <SimpleReport weatherReport={weatherReport.current} />
         </div>
         <div className='weather-forecast'>
-          <HourlyForecast />
+          <HourlyForecast weatherReport={weatherReport} />
         </div>
         <div className='weather-seven-day'>
           <SevenForecast />

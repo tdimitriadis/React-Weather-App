@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import moment from 'moment';
+
+import { icons } from '../constants.js';
 
 import './css/hourlyForecast.css';
 
-const HourlyForecast = () => {
+const HourlyForecast = ({ weatherReport }) => {
+  const [icon, setIcon] = useState();
+
+  console.log(icons[0]['01d']);
+
+  const hourly = () => {
+    return (
+      weatherReport.hourly &&
+      weatherReport.hourly.map((val, i) => {
+        if (i >= 14) {
+          return;
+        }
+        let time = moment.unix(val.dt).format('h A');
+        console.log('val.weather[0].icon: ', val.weather[0].icon);
+
+        return (
+          <div className={`hourly-forecast-${i + 1}`} key={i}>
+            <div className='hourly-forecast-time'>{time}</div>
+            <img className='hourly-forecast-icon' src={icons[0]['01d']}></img>
+            <div className='hourly-forecast-temp'>
+              {Math.round(val.temp) + '\xB0'}
+            </div>
+          </div>
+        );
+      })
+    );
+  };
+
   return (
     <div className='hourly-forecast-grid-container'>
       <div className='hourly-forecast-header'>
         <div className='hourly-forecast-title'>Forecast</div>
         <div className='hourly-forecast-line'></div>
       </div>
-      <div className='hourly-forecast-one'>1</div>
-      <div className='hourly-forecast-two'>2</div>
-      <div className='hourly-forecast-three'>3</div>
-      <div className='hourly-forecast-four'>4</div>
-      <div className='hourly-forecast-five'>5</div>
-      <div className='hourly-forecast-six'>6</div>
-      <div className='hourly-forecast-seven'>7</div>
-      <div className='hourly-forecast-eight'>8</div>
-      <div className='hourly-forecast-nine'>9</div>
-      <div className='hourly-forecast-ten'>10</div>
-      <div className='hourly-forecast-eleven'>11</div>
-      <div className='hourly-forecast-twelve'>12</div>
-      <div className='hourly-forecast-thirteen'>13</div>
-      <div className='hourly-forecast-fourteen'>14</div>
+      {hourly()}
     </div>
   );
 };

@@ -26,7 +26,7 @@
     'menu main right right right right'
     'menu footer footer footer footer footer';
   grid-template-columns: 10vw 23vw 17vw 13vw 13vw 16vw;
-  grid-template-rows: 9.5vw 15vw 18vw;
+  grid-template-rows: 9.5vw 17vw 18vw;
   grid-gap: 10px;
 }
 

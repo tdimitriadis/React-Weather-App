@@ -3,46 +3,46 @@
   text-align: center;
   color: white;
 }
-.hourly-forecast-one {
+.hourly-forecast-1 {
   grid-area: one;
 }
-.hourly-forecast-two {
+.hourly-forecast-2 {
   grid-area: two;
 }
-.hourly-forecast-three {
+.hourly-forecast-3 {
   grid-area: three;
 }
-.hourly-forecast-four {
+.hourly-forecast-4 {
   grid-area: four;
 }
-.hourly-forecast-five {
+.hourly-forecast-5 {
   grid-area: five;
 }
-.hourly-forecast-six {
+.hourly-forecast-6 {
   grid-area: six;
 }
-.hourly-forecast-seven {
+.hourly-forecast-7 {
   grid-area: seven;
 }
-.hourly-forecast-eight {
+.hourly-forecast-8 {
   grid-area: eight;
 }
-.hourly-forecast-nine {
+.hourly-forecast-9 {
   grid-area: nine;
 }
-.hourly-forecast-ten {
+.hourly-forecast-10 {
   grid-area: ten;
 }
-.hourly-forecast-eleven {
+.hourly-forecast-11 {
   grid-area: eleven;
 }
-.hourly-forecast-twelve {
+.hourly-forecast-12 {
   grid-area: twelve;
 }
-.hourly-forecast-thirteen {
+.hourly-forecast-13 {
   grid-area: thirteen;
 }
-.hourly-forecast-fourteen {
+.hourly-forecast-14 {
   grid-area: fourteen;
 }
 
@@ -53,7 +53,7 @@
     'one two three four five six seven'
     'eight nine ten eleven twelve thirteen fourteen';
   grid-gap: 0.5vw;
-  grid-template-rows: 4.5vw 4vw 4vw;
+  grid-template-rows: 4.5vw 5vw 5vw;
   padding: 0.5vw 1vw 1vw 1vw;
 }
 
@@ -72,4 +72,20 @@
 .hourly-forecast-line {
   border-bottom: 1px solid white;
   margin-top: 1vw;
+}
+
+.hourly-forecast-time {
+  padding-top: 0.4vw;
+  font-size: 1vw;
+}
+
+.hourly-forecast-icon {
+  margin-top: -1em;
+  width: 2vw;
+  height: 2vw;
+}
+
+.hourly-forecast-temp {
+  margin-top: -0.5em;
+  font-size: 1.2vw;
 }

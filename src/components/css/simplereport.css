@@ -3,7 +3,7 @@
 }
 .simple-report-details-container {
   grid-area: menu;
-  padding: 0.6vw 0em 1vw 3vw;
+  padding: 1.6vw 0em 1vw 2.7vw;
 }
 
 .simple-report-current-day-container {
@@ -36,6 +36,7 @@
 
 .simple-report-current-weather {
   padding-top: 0.6vw;
+  padding-left: 1vw;
   font-size: 2vw;
 }
 
@@ -44,10 +45,10 @@
   font-size: 2vw;
 }
 .simple-report-current-day {
-  padding-top: 1.5vw;
+  padding-top: 2.5vw;
   padding-bottom: 0.3em;
-  padding-left: 1.5em;
-  font-size: 1.8vw;
+  padding-left: 1.1em;
+  font-size: 1.5vw;
 }
 
 .simple-report-weather-description {
