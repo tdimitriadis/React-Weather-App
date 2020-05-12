@@ -77,7 +77,7 @@ const Weather = () => {
           <HourlyForecast weatherReport={weatherReport} />
         </div>
         <div className='weather-seven-day'>
-          <SevenForecast />
+          <SevenForecast weatherReport={weatherReport} />
         </div>
       </div>
       {modal && (

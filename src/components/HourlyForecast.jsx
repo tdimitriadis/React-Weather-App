@@ -2,7 +2,7 @@ import React from 'react';
 
 import moment from 'moment';
 
-import { icons } from '../constants.js';
+import { ICONS } from '../constants.js';
 
 import './css/hourlyForecast.css';
 
@@ -23,7 +23,7 @@ const HourlyForecast = ({ weatherReport }) => {
             <div className='hourly-forecast-time'>{time}</div>
             <img
               className='hourly-forecast-icon'
-              src={icons[`${weatherIcon}`]}
+              src={ICONS[`${weatherIcon}`]}
               alt='weatherIcon'
             ></img>
             <div className='hourly-forecast-temp'>

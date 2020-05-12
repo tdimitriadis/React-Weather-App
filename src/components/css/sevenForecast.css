@@ -1,22 +1,22 @@
-.seven-forecast-one {
+.seven-forecast-1 {
   grid-area: one;
 }
-.seven-forecast-two {
+.seven-forecast-2 {
   grid-area: two;
 }
-.seven-forecast-three {
+.seven-forecast-3 {
   grid-area: three;
 }
-.seven-forecast-four {
+.seven-forecast-4 {
   grid-area: four;
 }
-.seven-forecast-five {
+.seven-forecast-5 {
   grid-area: five;
 }
-.seven-forecast-six {
+.seven-forecast-6 {
   grid-area: six;
 }
-.seven-forecast-seven {
+.seven-forecast-7 {
   grid-area: seven;
   font-size: 2.5vw;
   text-align: center;
@@ -35,4 +35,18 @@
   font-size: 2.5vw;
   text-align: center;
   color: white;
+}
+
+.seven-forecast-description {
+  font-size: 1.2vw;
+}
+
+.seven-forecast-icon {
+  padding-top: 2rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+.seven-forecast-temp {
+  padding-top: 1.5rem;
 }
