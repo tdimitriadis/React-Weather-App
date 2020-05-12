@@ -16,9 +16,9 @@
 .simple-report-grid-container {
   display: grid;
   grid-template-areas:
-    'header  header'
-    'right  menu'
-    'footer  menu';
+    "header  header"
+    "right  menu"
+    "footer  menu";
   grid-template-columns: 10vw 12vw;
   color: white;
 }
@@ -52,7 +52,7 @@
 }
 
 .simple-report-weather-description {
-  padding-left: 2.4vw;
+  padding-left: 1.3vw;
   padding-bottom: 0.5em;
   font-size: 1.5vw;
 }

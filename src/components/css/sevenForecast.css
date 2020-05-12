@@ -25,7 +25,7 @@
 
 .seven-forecast-grid-container {
   display: grid;
-  grid-template-areas: 'one two three four five six seven';
+  grid-template-areas: "one two three four five six seven";
   grid-template-columns: 12vw 12vw 12vw 12vw 12vw 12vw 12vw;
   grid-template-rows: 16vw;
 }
@@ -42,11 +42,11 @@
 }
 
 .seven-forecast-icon {
-  padding-top: 2rem;
-  width: 5rem;
-  height: 5rem;
+  padding-top: 2vw;
+  width: 5vw;
+  height: 5vw;
 }
 
 .seven-forecast-temp {
-  padding-top: 1.5rem;
+  padding-top: 1vw;
 }
