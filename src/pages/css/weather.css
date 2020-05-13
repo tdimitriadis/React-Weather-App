@@ -22,10 +22,10 @@
 .weather-grid-container {
   display: grid;
   grid-template-areas:
-    'menu header header header header header'
-    'menu main right right right right'
-    'menu footer footer footer footer footer';
-  grid-template-columns: 10vw 23vw 17vw 13vw 13vw 16vw;
+    "menu header header header header header"
+    "menu main right right right right"
+    "menu footer footer footer footer footer";
+  grid-template-columns: 14vw 23vw 17vw 13vw 13vw 8vw;
   grid-template-rows: 9.5vw 17vw 18vw;
   grid-gap: 10px;
 }
@@ -53,30 +53,30 @@
 
 @media only screen and (min-width: 1920px) {
   .weather-grid-container {
-    margin: 2vw 0 2vw 2.7vw;
+    margin: 4vw 0 2vw 4.7vw;
   }
 }
 
 @media only screen and (max-width: 1920px) {
   .weather-grid-container {
-    margin: 2vw 0 2vw 2.4vw;
+    margin: 4vw 0 2vw 4vw;
   }
 }
 
 @media only screen and (max-width: 1400px) {
   .weather-grid-container {
-    margin: 2vw 0 2vw 2vw;
+    margin: 4vw 0 2vw 4vw;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .weather-grid-container {
-    margin: 2vw 0 2vw 1.6vw;
+    margin: 4vw 0 2vw 3.6vw;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .weather-grid-container {
-    margin: 2vw 0 2vw 0.8vw;
+    margin: 4vw 0 2vw 2.8vw;
   }
 }

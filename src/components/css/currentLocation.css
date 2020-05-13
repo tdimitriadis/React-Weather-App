@@ -22,9 +22,9 @@
 .current-location-grid-container {
   display: grid;
   grid-template-areas:
-    'header menu right'
-    'header menu right';
-  grid-template-columns: 9vw 20vw 56vw;
+    "header menu right"
+    "header menu right";
+  grid-template-columns: 9vw 20vw 48vw;
   color: white;
 }
 

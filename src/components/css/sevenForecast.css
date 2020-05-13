@@ -18,7 +18,7 @@
 }
 .seven-forecast-7 {
   grid-area: seven;
-  font-size: 2.5vw;
+  font-size: 2.2vw;
   text-align: center;
   color: white;
 }
@@ -26,13 +26,13 @@
 .seven-forecast-grid-container {
   display: grid;
   grid-template-areas: "one two three four five six seven";
-  grid-template-columns: 12vw 12vw 12vw 12vw 12vw 12vw 12vw;
+  grid-template-columns: 11vw 11vw 11vw 11vw 11vw 11vw 11vw;
   grid-template-rows: 16vw;
 }
 
 .seven-forecast-grid-container > div:not(:last-child) {
   border-right: 1px solid #ffffffb9;
-  font-size: 2.5vw;
+  font-size: 2.2vw;
   text-align: center;
   color: white;
 }
