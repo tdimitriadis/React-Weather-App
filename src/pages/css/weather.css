@@ -16,7 +16,7 @@
 }
 .weather-seven-day {
   grid-area: footer;
-  padding: 0.5em 0 0.5em 0;
+  padding: 1vw 0 0.5vw 0;
 }
 
 .weather-grid-container {
@@ -27,14 +27,19 @@
     "menu footer footer footer footer footer";
   grid-template-columns: 14vw 23vw 17vw 13vw 13vw 8vw;
   grid-template-rows: 9.5vw 17vw 18vw;
-  grid-gap: 10px;
+  grid-gap: 1vw;
+  justify-content: center;
 }
 
 .weather-grid-container > div {
   background-color: rgba(123, 120, 120, 0.3);
-  font-size: 30px;
   border-radius: 15px;
 }
+
+.weather-grid-container {
+  margin-top: 5vh;
+}
+
 .weather-modal {
   padding: 7em 15em 7em 15em;
   position: fixed;
@@ -49,34 +54,4 @@
 
 .hide {
   display: none;
-}
-
-@media only screen and (min-width: 1920px) {
-  .weather-grid-container {
-    margin: 4vw 0 2vw 4.7vw;
-  }
-}
-
-@media only screen and (max-width: 1920px) {
-  .weather-grid-container {
-    margin: 4vw 0 2vw 4vw;
-  }
-}
-
-@media only screen and (max-width: 1400px) {
-  .weather-grid-container {
-    margin: 4vw 0 2vw 4vw;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .weather-grid-container {
-    margin: 4vw 0 2vw 3.6vw;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .weather-grid-container {
-    margin: 4vw 0 2vw 2.8vw;
-  }
 }

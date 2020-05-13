@@ -24,7 +24,7 @@
   grid-template-areas:
     "header menu right"
     "header menu right";
-  grid-template-columns: 9vw 20vw 48vw;
+  grid-template-columns: 9vw 20vw auto;
   color: white;
 }
 
