@@ -20,9 +20,9 @@
 .modal-grid-container {
   display: grid;
   grid-template-areas:
-    'header header header'
-    'body body body'
-    'button button button';
+    "header header header"
+    "body body body"
+    "button button button";
   grid-template-columns: 9em 20em;
   grid-template-rows: 3em 5em 3em;
 }
@@ -37,6 +37,7 @@
   background: white;
   box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.7);
   background-color: rgb(158, 158, 158);
+  color: white;
 }
 
 .modal-input {
@@ -52,6 +53,7 @@
   font-family: Roboto;
   margin-right: 0.5em;
   vertical-align: top;
+  color: black;
 }
 
 .modal-button {

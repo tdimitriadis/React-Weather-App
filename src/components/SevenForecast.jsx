@@ -7,7 +7,6 @@ import { SEVEN_DAY_ICONS } from "../constants.js";
 import "./css/sevenForecast.css";
 
 const SevenForecast = ({ weatherReport }) => {
-  console.log("weatherReport: ", weatherReport.daily);
   const daily = () => {
     return (
       weatherReport.daily &&
