@@ -21,6 +21,8 @@ This weather application will display current, hourly and seven day forecast. It
 Runs the app in the development mode.<br />
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
+An API key for Google and OpenWeather will need to be added in a `.env` directory.
+
 ## API Reference
 
 **Utilized APIs**
