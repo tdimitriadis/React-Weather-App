@@ -55,7 +55,7 @@ export const ICONS = {
 
 export const SEVEN_DAY_ICONS = {
   "01d": sunIconSeven,
-  "01n": nightSunIcon,
+  "01n": sunIconSeven,
   "02d": fewCloudsIconSeven,
   "02n": fewCloudsIconSeven,
   "03d": scatteredCloudsIconSeven,

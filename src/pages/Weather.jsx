@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import * as locationData from "../assets/testData.json";
 import SimpleReport from "../components/SimpleReport";
 import CurrentLocation from "../components/CurrentLocation";
 import Modal from "../components/Modal.jsx";
@@ -18,21 +17,16 @@ const Weather = () => {
   const OPEN_WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://api.openweathermap.org/data/2.5/onecall?lat=37.7749295&lon=-122.4194155&units=imperial&appid=${OPEN_WEATHER_API_KEY}`,
-  //   )
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setWeatherReport(data);
-  //       setLocation({ statename: 'California', city: 'San Francisco' });
-  //     });
-  // }, []);
-
   useEffect(() => {
-    setWeatherReport(locationData.default);
-    setLocation({ statename: "California", city: "San Francisco" });
-  }, []);
+    fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=37.7749295&lon=-122.4194155&units=imperial&appid=${OPEN_WEATHER_API_KEY}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setWeatherReport(data);
+        setLocation({ statename: "California", city: "San Francisco" });
+      });
+  }, [OPEN_WEATHER_API_KEY]);
 
   const handleChangeLocation = (loc) => {
     let city = Object.values(loc);
