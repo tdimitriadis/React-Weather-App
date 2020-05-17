@@ -1,6 +1,6 @@
 .button-input {
   color: white;
-  background-color: rgba(7, 23, 33, 0.6);
+  background-color: rgba(7, 23, 33, 1);
   font-size: 1vw;
   font-weight: 800;
   border-radius: 15px;
@@ -12,11 +12,11 @@
 }
 
 .button-input:hover {
-  background-color: rgba(11, 37, 53, 0.6);
+  background-color: rgba(7, 23, 33, 0.6);
 }
 
 .button-input:active {
-  background-color: rgba(17, 59, 85, 0.6);
+  background-color: rgba(7, 23, 33, 0.4);
 }
 
 .button-image {

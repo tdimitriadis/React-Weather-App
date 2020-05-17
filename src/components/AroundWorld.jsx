@@ -11,6 +11,7 @@ const AroundWorld = () => {
   const [weatherReport, setWeatherReport] = useState({});
   const [temperature, setTemperature] = useState("");
   const [currentCity, setCurrentCity] = useState("");
+  const [active, setActive] = useState(0);
 
   const handleChangeLocation = useCallback(
     (loc) => {
@@ -46,12 +47,15 @@ const AroundWorld = () => {
   }, [handleChangeLocation]);
 
   const displayCities = () => {
-    return CITIES.map((val) => {
+    return CITIES.map((val, i) => {
       return (
         <li
-          className="around-world-city"
+          className={
+            active === i ? "around-world-city-active" : "around-world-city"
+          }
           key={Object.values(val)}
           onClick={() => {
+            setActive(i);
             handleChangeLocation(val);
             setCurrentCity(Object.values(val));
           }}
