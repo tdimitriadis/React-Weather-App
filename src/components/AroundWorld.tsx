@@ -28,35 +28,42 @@ interface WeatherReportState {
 
 type LocationInput = { [key: string]: string };
 
-interface GeoLocation { lat: number; lng: number; }
+interface GeoLocation {
+  lat: number;
+  lng: number;
+}
 interface GeocodeResult {
   address_components: any[]; // Define further if needed
   formatted_address: string;
-  geometry: { location: GeoLocation; /* other fields */ };
+  geometry: { location: GeoLocation /* other fields */ };
   place_id: string;
   types: string[];
 }
-interface GeocodeResponse { results: GeocodeResult[]; status: string; }
+interface GeocodeResponse {
+  results: GeocodeResult[];
+  status: string;
+}
 
 // Type for CITY_IMAGES keys
 type CityImageKey = keyof typeof CITY_IMAGES;
 
 // Type guard for CITY_IMAGES keys
 const isValidCityImageKey = (key: string): key is CityImageKey => {
-    return key in CITY_IMAGES;
+  return key in CITY_IMAGES;
 };
 
 // Helper to safely capitalize
 const capitalize = (s?: string): string => {
-  if (!s) return '';
+  if (!s) return "";
   return s.charAt(0).toUpperCase() + s.slice(1);
-}
+};
 
 // --- Component ---
 const AroundWorld: FC = () => {
   // Typed API Keys
-  const OPEN_WEATHER_API_KEY: string = process.env.REACT_APP_OPEN_WEATHER_API_KEY || "";
-  const GOOGLE_API_KEY: string = process.env.REACT_APP_GOOGLE_API_KEY || "";
+  const OPEN_WEATHER_API_KEY: string =
+    import.meta.env.VITE_OPEN_WEATHER_API_KEY || "";
+  const GOOGLE_API_KEY: string = import.meta.env.VITE_GOOGLE_API_KEY || "";
 
   // Typed State
   const [weatherReport, setWeatherReport] = useState<WeatherReportState>({});
@@ -82,11 +89,18 @@ const AroundWorld: FC = () => {
 
       // Fetch Geocoding
       fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(city)},+${encodeURIComponent(state)}&key=${GOOGLE_API_KEY}`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+          city
+        )},+${encodeURIComponent(state)}&key=${GOOGLE_API_KEY}`
       )
         .then((res) => res.json())
-        .then((data: GeocodeResponse) => { // Type response
-          if (data.status !== "OK" || !data.results || data.results.length === 0) {
+        .then((data: GeocodeResponse) => {
+          // Type response
+          if (
+            data.status !== "OK" ||
+            !data.results ||
+            data.results.length === 0
+          ) {
             throw new Error(`Geocoding failed in AroundWorld: ${data.status}`);
           }
           const geoLocation = data.results[0].geometry.location;
@@ -99,10 +113,13 @@ const AroundWorld: FC = () => {
           );
         })
         .then((res) => res.json())
-        .then((data: WeatherReportState) => { // Type response
+        .then((data: WeatherReportState) => {
+          // Type response
           setWeatherReport(data);
           // Safely set temperature string
-          setTemperature(data.current?.temp ? Math.round(data.current.temp).toString() : "");
+          setTemperature(
+            data.current?.temp ? Math.round(data.current.temp).toString() : ""
+          );
         })
         .catch((err) => {
           console.error("Error changing location in AroundWorld:", err);
@@ -116,9 +133,11 @@ const AroundWorld: FC = () => {
   // Initial fetch on mount
   useEffect(() => {
     // Find the index for "New York" to set initial active state correctly
-    const initialIndex = CITIES.findIndex(cityObj => Object.values(cityObj)[0] === "New York");
+    const initialIndex = CITIES.findIndex(
+      (cityObj) => Object.values(cityObj)[0] === "New York"
+    );
     if (initialIndex !== -1) {
-        setActive(initialIndex);
+      setActive(initialIndex);
     }
     handleChangeLocation({ "New York": "New York" }); // Fetch for default city
   }, [handleChangeLocation]); // Run only once on mount
@@ -149,7 +168,9 @@ const AroundWorld: FC = () => {
   };
 
   // Determine image source safely
-  const cityImageSrc = isValidCityImageKey(currentCity) ? CITY_IMAGES[currentCity] : CITY_IMAGES["New York"]; // Fallback to NY
+  const cityImageSrc = isValidCityImageKey(currentCity)
+    ? CITY_IMAGES[currentCity]
+    : CITY_IMAGES["New York"]; // Fallback to NY
 
   return (
     <div className="around-world-grid-container">
@@ -164,7 +185,8 @@ const AroundWorld: FC = () => {
             {capitalize(weatherReport?.current?.weather?.[0]?.description)}
           </div>
           <div className="around-world-temp">
-            {temperature ? temperature + "\xB0F" : '--'} {/* Display temp or placeholder */}
+            {temperature ? temperature + "\xB0F" : "--"}{" "}
+            {/* Display temp or placeholder */}
           </div>
         </div>
       </div>

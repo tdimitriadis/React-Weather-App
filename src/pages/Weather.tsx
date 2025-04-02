@@ -152,12 +152,16 @@ interface GeocodeResponse {
 const Weather: FC = () => {
   // Typed state hooks
   const [weatherReport, setWeatherReport] = useState<WeatherReportState>({});
-  const [location, setLocation] = useState<LocationState>({ statename: "", city: "" }); // Initialize with empty strings
+  const [location, setLocation] = useState<LocationState>({
+    statename: "",
+    city: "",
+  }); // Initialize with empty strings
   const [modal, setModal] = useState<boolean>(false);
 
   // Ensure API keys are treated as strings (or handle potential undefined)
-  const OPEN_WEATHER_API_KEY: string = process.env.REACT_APP_OPEN_WEATHER_API_KEY || "";
-  const GOOGLE_API_KEY: string = process.env.REACT_APP_GOOGLE_API_KEY || "";
+  const OPEN_WEATHER_API_KEY: string =
+    import.meta.env.VITE_OPEN_WEATHER_API_KEY || "";
+  const GOOGLE_API_KEY: string = import.meta.env.VITE_GOOGLE_API_KEY || "";
 
   useEffect(() => {
     // Initial fetch for default location (San Francisco)
@@ -166,7 +170,8 @@ const Weather: FC = () => {
         `https://api.openweathermap.org/data/2.5/onecall?lat=37.7749295&lon=-122.4194155&units=imperial&appid=${OPEN_WEATHER_API_KEY}`
       )
         .then((res) => res.json())
-        .then((data: WeatherReportState) => { // Type the response data
+        .then((data: WeatherReportState) => {
+          // Type the response data
           setWeatherReport(data);
           setLocation({ statename: "California", city: "San Francisco" });
         })
@@ -193,11 +198,18 @@ const Weather: FC = () => {
 
     // Fetch geocoding data
     fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(city)},+${encodeURIComponent(state)}&key=${GOOGLE_API_KEY}`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        city
+      )},+${encodeURIComponent(state)}&key=${GOOGLE_API_KEY}`
     )
       .then((res) => res.json())
-      .then((data: GeocodeResponse) => { // Type the geocoding response
-        if (data.status !== "OK" || !data.results || data.results.length === 0) {
+      .then((data: GeocodeResponse) => {
+        // Type the geocoding response
+        if (
+          data.status !== "OK" ||
+          !data.results ||
+          data.results.length === 0
+        ) {
           throw new Error(`Geocoding failed: ${data.status}`);
         }
 
@@ -209,20 +221,28 @@ const Weather: FC = () => {
         let foundLocation: LocationState | null = null;
 
         // Find matching state/city - simplified logic
-        const stateComponent = address.find(comp => comp.types.includes("administrative_area_level_1"));
-        const cityComponent = address.find(comp => comp.types.includes("locality") || comp.types.includes("administrative_area_level_3") || comp.types.includes("postal_town"));
+        const stateComponent = address.find((comp) =>
+          comp.types.includes("administrative_area_level_1")
+        );
+        const cityComponent = address.find(
+          (comp) =>
+            comp.types.includes("locality") ||
+            comp.types.includes("administrative_area_level_3") ||
+            comp.types.includes("postal_town")
+        );
 
         if (stateComponent && cityComponent) {
-            foundLocation = {
-                statename: stateComponent.long_name,
-                city: cityComponent.long_name,
-            };
-            setLocation(foundLocation);
+          foundLocation = {
+            statename: stateComponent.long_name,
+            city: cityComponent.long_name,
+          };
+          setLocation(foundLocation);
         } else {
-             console.warn("Could not accurately determine state/city from geocoding response.");
-             // Fallback or keep previous location? For now, just log.
+          console.warn(
+            "Could not accurately determine state/city from geocoding response."
+          );
+          // Fallback or keep previous location? For now, just log.
         }
-
 
         // Fetch weather data for the new coordinates
         return fetch(
@@ -233,7 +253,8 @@ const Weather: FC = () => {
         if (!res) return; // Skip if geocoding failed
         return res.json();
       })
-      .then((data?: WeatherReportState) => { // Type weather response, make optional
+      .then((data?: WeatherReportState) => {
+        // Type weather response, make optional
         if (data) {
           setWeatherReport(data);
         }
@@ -258,7 +279,8 @@ const Weather: FC = () => {
           <AroundWorld /> {/* Assuming AroundWorld takes no props for now */}
         </div>
         <div className="weather-current">
-          <SimpleReport weatherReport={weatherReport?.current} /> {/* Use optional chaining */}
+          <SimpleReport weatherReport={weatherReport?.current} />{" "}
+          {/* Use optional chaining */}
         </div>
         <div className="weather-forecast">
           <HourlyForecast weatherReport={weatherReport} />
