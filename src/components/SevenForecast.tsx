@@ -1,85 +1,79 @@
-import React, { FC } from "react"; // Import FC
+import React, { FC } from "react";
 
 import moment from "moment";
 
-import { SEVEN_DAY_ICONS } from "../constants"; // Use .ts (implicitly)
+// Removed SEVEN_DAY_ICONS import
+// import { SEVEN_DAY_ICONS } from "../constants";
 
 import "./css/sevenForecast.css";
 
 // --- Interfaces & Types ---
-interface WeatherDailyTemp {
-  day?: number;
+// Define necessary interfaces from WeatherAPI response locally
+// TODO: Move these to a shared types file
+interface ApiCondition {
+  text: string;
+  icon: string; // URL path
+  code: number;
+}
+
+interface ApiDayForecastMetrics {
+  maxtemp_f: number;
+  mintemp_f: number; // Available if needed
+  condition: ApiCondition;
   // Add other fields if needed
 }
 
-interface WeatherDaily {
-  dt?: number;
-  temp?: WeatherDailyTemp;
-  weather?: {
-    id?: number;
-    main?: string;
-    description?: string;
-    icon?: string;
-  }[];
-  // Add other fields if needed
+interface ApiForecastDay {
+  date: string;
+  date_epoch: number;
+  day: ApiDayForecastMetrics;
+  // astro: ApiAstro; // Available if needed
+  // hour: ApiHourForecast[]; // Available if needed
 }
 
-interface WeatherReportState {
-  // Define structure based on parent component's state
-  lat?: number;
-  lon?: number;
-  timezone?: string;
-  timezone_offset?: number;
-  current?: any; // Define if needed
-  hourly?: any[]; // Define if needed
-  daily?: WeatherDaily[];
-}
-
+// Update Props interface to accept the daily forecast array directly
 interface Props {
-  weatherReport: WeatherReportState; // Prop received from parent
+  dailyData?: ApiForecastDay[]; // Make optional
 }
 
-// Type for Icon Keys from constants.ts
-type IconKey = keyof typeof SEVEN_DAY_ICONS;
-
-// Type guard function
-const isValidIconKey = (key: string | undefined): key is IconKey => {
-  return key !== undefined && key in SEVEN_DAY_ICONS;
+// Helper to safely capitalize (still useful)
+const capitalize = (s?: string): string => {
+  if (!s) return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
-// Helper to safely capitalize
-const capitalize = (s?: string): string => {
-  if (!s) return '';
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
 // --- Component ---
-const SevenForecast: FC<Props> = ({ weatherReport }) => {
-
-  // Render function for daily items with type safety
+const SevenForecast: FC<Props> = ({ dailyData }) => {
+  // Render function for daily items using new data structure
   const renderDailyItems = () => {
     // Check if daily data exists and is an array
-    if (!weatherReport?.daily || !Array.isArray(weatherReport.daily)) {
-      return null; // Or return a loading/placeholder state
+    if (!dailyData || !Array.isArray(dailyData)) {
+      return <div className="seven-forecast-loading">Loading forecast...</div>; // Provide feedback
     }
 
-    return weatherReport.daily.map((val, i) => {
-      // Limit to first 7 items
+    return dailyData.map((val, i) => {
+      // API usually returns enough days, but limit just in case or if desired
       if (i >= 7) {
         return null;
       }
 
-      // Safely access nested properties
-      const weatherIcon = val.weather?.[0]?.icon;
-      const day = val.dt ? moment.unix(val.dt).format("dddd") : '--';
-      const description = val.weather?.[0]?.description || '';
-      const temp = typeof val.temp?.day !== 'undefined' ? Math.round(val.temp.day) + "\xB0" : '--';
-
-      // Use type guard for icon source
-      const iconSrc = isValidIconKey(weatherIcon) ? SEVEN_DAY_ICONS[weatherIcon] : undefined;
+      // Use new fields from ApiForecastDay and nested objects
+      const day = val.date_epoch
+        ? moment.unix(val.date_epoch).format("dddd")
+        : "--";
+      const description = val.day?.condition?.text || "";
+      // Using max temp for consistency with previous implementation
+      const temp =
+        typeof val.day?.maxtemp_f !== "undefined"
+          ? Math.round(val.day.maxtemp_f) + "\xB0"
+          : "--";
+      const iconUrlPath = val.day?.condition?.icon;
+      const iconSrc = iconUrlPath ? `https:${iconUrlPath}` : undefined;
 
       return (
-        <div className={`seven-forecast-${i + 1}`} key={val.dt || i}> {/* Use dt for key */}
+        <div className={`seven-forecast-${i + 1}`} key={val.date_epoch || i}>
+          {" "}
+          {/* Use date_epoch for key */}
           {day}
           <div>
             <div className="seven-forecast-description">
@@ -101,7 +95,9 @@ const SevenForecast: FC<Props> = ({ weatherReport }) => {
     });
   };
 
-  return <div className="seven-forecast-grid-container">{renderDailyItems()}</div>;
+  return (
+    <div className="seven-forecast-grid-container">{renderDailyItems()}</div>
+  );
 };
 
 export default SevenForecast;

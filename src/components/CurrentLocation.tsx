@@ -1,46 +1,46 @@
-import React, { FC } from "react"; // Import FC
+import React, { FC } from "react";
 
-import Button from "../components/Button"; // Use .tsx (implicitly)
-import { SEVEN_DAY_ICONS } from "../constants"; // Use .ts (implicitly)
+import Button from "../components/Button";
+// Removed SEVEN_DAY_ICONS import
 
 import "./css/currentLocation.css";
 
-// --- Type for Icon Keys ---
-type IconKey = keyof typeof SEVEN_DAY_ICONS;
-
 // --- Interfaces ---
+// Define necessary interfaces from WeatherAPI response locally
+// TODO: Move these to a shared types file
+interface ApiCondition {
+  text: string;
+  icon: string; // URL path (e.g., //cdn.weatherapi.com/weather/64x64/day/116.png)
+  code: number;
+}
+interface ApiCurrentWeather {
+  condition: ApiCondition;
+  // Add other fields from ApiCurrentWeather if needed by this component in the future
+  // temp_f: number;
+  // feelslike_f: number;
+}
+
+// Location state remains the same
 interface LocationState {
   statename: string;
   city: string;
 }
 
-interface WeatherCurrent {
-  weather?: {
-    id?: number;
-    main?: string;
-    description?: string;
-    icon?: string;
-  }[];
-}
-
+// Props interface updated to use the new weather report type
 interface Props {
   location: LocationState;
-  weatherReport?: WeatherCurrent; // Optional based on parent usage
+  weatherReport?: ApiCurrentWeather; // Use the new interface, make optional
   click: () => void;
 }
 
 // --- Component ---
 const CurrentLocation: FC<Props> = ({ location, weatherReport, click }) => {
-  // Use optional chaining robustly
-  const weatherIcon = weatherReport?.weather?.[0]?.icon;
-
-  // Type guard to check if the icon string is a valid key
-  const isValidIconKey = (key: string | undefined): key is IconKey => {
-    return key !== undefined && key in SEVEN_DAY_ICONS;
-  };
-
-  // Use the type guard before accessing the object
-  const iconSrc = isValidIconKey(weatherIcon) ? SEVEN_DAY_ICONS[weatherIcon] : undefined;
+  // Get icon URL and description directly from the new structure
+  const iconUrlPath = weatherReport?.condition?.icon;
+  // WeatherAPI icon URLs start with //, prepend https:
+  const iconSrc = iconUrlPath ? `https:${iconUrlPath}` : undefined;
+  const conditionText =
+    weatherReport?.condition?.text || "Current weather condition"; // Default alt text
 
   return (
     <div className="current-location-grid-container">
@@ -49,7 +49,7 @@ const CurrentLocation: FC<Props> = ({ location, weatherReport, click }) => {
           <img
             className="current-location-icon"
             src={iconSrc}
-            alt="Weather Icon"
+            alt={conditionText} // Use condition text for alt
           />
         ) : (
           // Optional: Placeholder or leave empty if no icon

@@ -10,257 +10,245 @@ import AroundWorld from "../components/AroundWorld"; // Changed from .jsx
 
 import "./css/weather.css";
 
-// --- Interfaces and Types ---
+// --- Interfaces and Types for WeatherAPI.com ---
 
-// Basic interface for location state
+// Basic interface for location state (used for display)
 interface LocationState {
-  statename: string;
-  city: string;
+  statename: string; // Corresponds to 'region' in API
+  city: string; // Corresponds to 'name' in API
 }
 
-// Basic interfaces for weather report state based on usage
-interface WeatherCurrent {
-  dt?: number;
-  sunrise?: number;
-  sunset?: number;
-  temp?: number;
-  feels_like?: number;
-  pressure?: number;
-  humidity?: number;
-  dew_point?: number;
-  uvi?: number;
-  clouds?: number;
-  visibility?: number;
-  wind_speed?: number;
-  wind_deg?: number;
-  weather?: {
-    id?: number;
-    main?: string;
-    description?: string;
-    icon?: string;
-  }[];
-}
-
-interface WeatherHourly {
-  dt?: number;
-  temp?: number;
-  feels_like?: number;
-  pressure?: number;
-  humidity?: number;
-  dew_point?: number;
-  uvi?: number;
-  clouds?: number;
-  visibility?: number;
-  wind_speed?: number;
-  wind_deg?: number;
-  wind_gust?: number;
-  weather?: {
-    id?: number;
-    main?: string;
-    description?: string;
-    icon?: string;
-  }[];
-  pop?: number;
-}
-
-interface WeatherDailyTemp {
-  day?: number;
-  min?: number;
-  max?: number;
-  night?: number;
-  eve?: number;
-  morn?: number;
-}
-
-interface WeatherDailyFeelsLike {
-  day?: number;
-  night?: number;
-  eve?: number;
-  morn?: number;
-}
-
-interface WeatherDaily {
-  dt?: number;
-  sunrise?: number;
-  sunset?: number;
-  moonrise?: number;
-  moonset?: number;
-  moon_phase?: number;
-  temp?: WeatherDailyTemp;
-  feels_like?: WeatherDailyFeelsLike;
-  pressure?: number;
-  humidity?: number;
-  dew_point?: number;
-  wind_speed?: number;
-  wind_deg?: number;
-  wind_gust?: number;
-  weather?: {
-    id?: number;
-    main?: string;
-    description?: string;
-    icon?: string;
-  }[];
-  clouds?: number;
-  pop?: number;
-  uvi?: number;
-}
-
-interface WeatherReportState {
-  lat?: number;
-  lon?: number;
-  timezone?: string;
-  timezone_offset?: number;
-  current?: WeatherCurrent;
-  hourly?: WeatherHourly[];
-  daily?: WeatherDaily[];
-}
-
-// Type for the input to handleChangeLocation
+// Type for the input to handleChangeLocation (remains the same)
 type LocationInput = { [key: string]: string };
 
-// Types for Google Geocoding API response
-interface GeoLocation {
+// WeatherAPI Location Object
+interface ApiLocation {
+  name: string;
+  region: string;
+  country: string;
   lat: number;
-  lng: number;
+  lon: number;
+  tz_id: string;
+  localtime_epoch: number;
+  localtime: string;
 }
-interface AddressComponent {
-  long_name: string;
-  short_name: string;
-  types: string[];
+
+// WeatherAPI Condition Object
+interface ApiCondition {
+  text: string;
+  icon: string; // URL path
+  code: number;
 }
-interface GeocodeResult {
-  address_components: AddressComponent[];
-  formatted_address: string;
-  geometry: {
-    location: GeoLocation;
-    location_type: string;
-    viewport: {
-      northeast: GeoLocation;
-      southwest: GeoLocation;
-    };
-  };
-  place_id: string;
-  types: string[];
+
+// WeatherAPI Current Weather Object
+interface ApiCurrentWeather {
+  last_updated_epoch: number;
+  last_updated: string;
+  temp_c: number;
+  temp_f: number;
+  is_day: number; // 1 = Yes, 0 = No
+  condition: ApiCondition;
+  wind_mph: number;
+  wind_kph: number;
+  wind_degree: number;
+  wind_dir: string;
+  pressure_mb: number;
+  pressure_in: number;
+  precip_mm: number;
+  precip_in: number;
+  humidity: number;
+  cloud: number; // Cloud cover as percentage
+  feelslike_c: number;
+  feelslike_f: number;
+  vis_km: number;
+  vis_miles: number;
+  uv: number;
+  gust_mph: number;
+  gust_kph: number;
 }
-interface GeocodeResponse {
-  results: GeocodeResult[];
-  status: string;
+
+// WeatherAPI Daily Forecast Metrics (within 'day' object)
+interface ApiDayForecastMetrics {
+  maxtemp_c: number;
+  maxtemp_f: number;
+  mintemp_c: number;
+  mintemp_f: number;
+  avgtemp_c: number;
+  avgtemp_f: number;
+  maxwind_mph: number;
+  maxwind_kph: number;
+  totalprecip_mm: number;
+  totalprecip_in: number;
+  totalsnow_cm: number;
+  avgvis_km: number;
+  avgvis_miles: number;
+  avghumidity: number;
+  daily_will_it_rain: number; // 1 = Yes, 0 = No
+  daily_chance_of_rain: number; // Percentage
+  daily_will_it_snow: number; // 1 = Yes, 0 = No
+  daily_chance_of_snow: number; // Percentage
+  condition: ApiCondition;
+  uv: number;
+}
+
+// WeatherAPI Astro Object (within 'forecastday')
+interface ApiAstro {
+  sunrise: string;
+  sunset: string;
+  moonrise: string;
+  moonset: string;
+  moon_phase: string;
+  moon_illumination: string; // Percentage
+}
+
+// WeatherAPI Hourly Forecast Object (within 'hour' array)
+interface ApiHourForecast {
+  time_epoch: number;
+  time: string;
+  temp_c: number;
+  temp_f: number;
+  is_day: number;
+  condition: ApiCondition;
+  wind_mph: number;
+  wind_kph: number;
+  wind_degree: number;
+  wind_dir: string;
+  pressure_mb: number;
+  pressure_in: number;
+  precip_mm: number;
+  precip_in: number;
+  humidity: number;
+  cloud: number;
+  feelslike_c: number;
+  feelslike_f: number;
+  windchill_c: number;
+  windchill_f: number;
+  heatindex_c: number;
+  heatindex_f: number;
+  dewpoint_c: number;
+  dewpoint_f: number;
+  will_it_rain: number;
+  chance_of_rain: number;
+  will_it_snow: number;
+  chance_of_snow: number;
+  vis_km: number;
+  vis_miles: number;
+  gust_mph: number;
+  gust_kph: number;
+  uv: number;
+}
+
+// WeatherAPI Forecast Day Object (within 'forecastday' array)
+interface ApiForecastDay {
+  date: string;
+  date_epoch: number;
+  day: ApiDayForecastMetrics;
+  astro: ApiAstro;
+  hour: ApiHourForecast[]; // Array of hourly forecasts for this day
+}
+
+// WeatherAPI Forecast Object (contains 'forecastday' array)
+interface ApiForecast {
+  forecastday: ApiForecastDay[];
+}
+
+// Main WeatherAPI Response Structure (used for weatherReport state)
+interface WeatherApiResponse {
+  location?: ApiLocation;
+  current?: ApiCurrentWeather;
+  forecast?: ApiForecast;
 }
 
 // --- Component ---
 
 const Weather: FC = () => {
-  // Typed state hooks
-  const [weatherReport, setWeatherReport] = useState<WeatherReportState>({});
+  // Typed state hooks - Use the new main response interface
+  const [weatherReport, setWeatherReport] = useState<WeatherApiResponse>({});
   const [location, setLocation] = useState<LocationState>({
     statename: "",
     city: "",
   }); // Initialize with empty strings
   const [modal, setModal] = useState<boolean>(false);
 
-  // Ensure API keys are treated as strings (or handle potential undefined)
-  const OPEN_WEATHER_API_KEY: string =
-    import.meta.env.VITE_OPEN_WEATHER_API_KEY || "";
-  const GOOGLE_API_KEY: string = import.meta.env.VITE_GOOGLE_API_KEY || "";
+  // Ensure API key is treated as string (or handle potential undefined)
+  const WEATHER_API_KEY: string = import.meta.env.VITE_WEATHER_API_KEY || "";
+  // const GOOGLE_API_KEY: string = import.meta.env.VITE_GOOGLE_API_KEY || ""; // Removing Google API for now
 
   useEffect(() => {
-    // Initial fetch for default location (San Francisco)
-    if (OPEN_WEATHER_API_KEY) {
+    // Initial fetch for default location (San Francisco) using WeatherAPI.com
+    if (WEATHER_API_KEY) {
+      // Using WeatherAPI forecast endpoint. 'q' can be lat,lon or city name. 'days=7' for weekly forecast.
       fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=37.7749295&lon=-122.4194155&units=imperial&appid=${OPEN_WEATHER_API_KEY}`
+        `https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=37.7749,-122.4194&days=7&aqi=no&alerts=no`
       )
         .then((res) => res.json())
-        .then((data: WeatherReportState) => {
-          // Type the response data
-          setWeatherReport(data);
-          setLocation({ statename: "California", city: "San Francisco" });
+        .then((data: WeatherApiResponse) => {
+          // Add type annotation here
+          // console.log("Initial WeatherAPI Data:", data); // For debugging
+          setWeatherReport(data); // Store the new data structure
+          // Use the new API structure for location
+          if (data.location) {
+            setLocation({
+              statename: data.location.region,
+              city: data.location.name,
+            });
+          } else {
+            setLocation({ statename: "California", city: "San Francisco" }); // Fallback
+          }
         })
-        .catch((err) => console.error("Error fetching initial weather:", err)); // Add error handling
+        .catch((err) => console.error("Error fetching initial weather:", err));
     } else {
-      console.error("OpenWeather API key is missing.");
+      console.error("WeatherAPI key (VITE_WEATHER_API_KEY) is missing.");
     }
-  }, [OPEN_WEATHER_API_KEY]); // Dependency array
+  }, [WEATHER_API_KEY]); // Dependency array updated
 
-  // Typed function
+  // Refactored function to use WeatherAPI directly
   const handleChangeLocation = (loc: LocationInput) => {
-    if (!GOOGLE_API_KEY || !OPEN_WEATHER_API_KEY) {
-      console.error("API key(s) missing for location change.");
-      return; // Exit if keys are missing
+    if (!WEATHER_API_KEY) {
+      console.error("WeatherAPI key is missing for location change.");
+      return; // Exit if key is missing
     }
 
-    const city = Object.values(loc)[0]; // Assuming only one key-value pair
-    const state = Object.keys(loc)[0]; // Assuming only one key-value pair
+    const city = Object.values(loc)[0];
+    const state = Object.keys(loc)[0]; // Assuming state is the key, city is the value
+    const query = state ? `${city}, ${state}` : city; // Construct query string
 
-    if (!city || !state) {
+    if (!query) {
       console.error("Invalid location input:", loc);
       return; // Exit if input is invalid
     }
 
-    // Fetch geocoding data
+    // Fetch weather data using WeatherAPI forecast endpoint
     fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        city
-      )},+${encodeURIComponent(state)}&key=${GOOGLE_API_KEY}`
+      `https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${encodeURIComponent(
+        query
+      )}&days=7&aqi=no&alerts=no`
     )
-      .then((res) => res.json())
-      .then((data: GeocodeResponse) => {
-        // Type the geocoding response
-        if (
-          data.status !== "OK" ||
-          !data.results ||
-          data.results.length === 0
-        ) {
-          throw new Error(`Geocoding failed: ${data.status}`);
-        }
-
-        const address = data.results[0].address_components;
-        const geoLocation = data.results[0].geometry.location;
-        const lon = geoLocation.lng;
-        const lat = geoLocation.lat;
-
-        let foundLocation: LocationState | null = null;
-
-        // Find matching state/city - simplified logic
-        const stateComponent = address.find((comp) =>
-          comp.types.includes("administrative_area_level_1")
-        );
-        const cityComponent = address.find(
-          (comp) =>
-            comp.types.includes("locality") ||
-            comp.types.includes("administrative_area_level_3") ||
-            comp.types.includes("postal_town")
-        );
-
-        if (stateComponent && cityComponent) {
-          foundLocation = {
-            statename: stateComponent.long_name,
-            city: cityComponent.long_name,
-          };
-          setLocation(foundLocation);
-        } else {
-          console.warn(
-            "Could not accurately determine state/city from geocoding response."
-          );
-          // Fallback or keep previous location? For now, just log.
-        }
-
-        // Fetch weather data for the new coordinates
-        return fetch(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`
-        );
-      })
       .then((res) => {
-        if (!res) return; // Skip if geocoding failed
+        if (!res.ok) {
+          // Handle API errors (like location not found)
+          return res.json().then((errData) => {
+            throw new Error(
+              `WeatherAPI Error: ${errData.error?.message || res.statusText}`
+            );
+          });
+        }
         return res.json();
       })
-      .then((data?: WeatherReportState) => {
-        // Type weather response, make optional
-        if (data) {
-          setWeatherReport(data);
+      .then((data: WeatherApiResponse) => {
+        setWeatherReport(data);
+
+        if (data.location) {
+          setLocation({
+            statename: data.location.region,
+            city: data.location.name,
+          });
+        } else {
+          setLocation({ statename: state || "", city: city });
         }
       })
       .catch((err) => {
-        console.error("Error changing location:", err); // Improved error logging
+        console.error("Error changing location:", err);
       });
   };
 
@@ -271,7 +259,7 @@ const Weather: FC = () => {
           {/* Pass typed props - TS will infer for now, explicit types needed in child components */}
           <CurrentLocation
             location={location}
-            weatherReport={weatherReport?.current} // Use optional chaining
+            weatherReport={weatherReport?.current} // Pass ApiCurrentWeather | undefined
             click={() => setModal(true)}
           />
         </div>
@@ -280,13 +268,18 @@ const Weather: FC = () => {
         </div>
         <div className="weather-current">
           <SimpleReport weatherReport={weatherReport?.current} />{" "}
-          {/* Use optional chaining */}
         </div>
         <div className="weather-forecast">
-          <HourlyForecast weatherReport={weatherReport} />
+          <HourlyForecast
+            hourlyData={
+              weatherReport?.forecast?.forecastday
+                ? weatherReport?.forecast?.forecastday[0]?.hour
+                : []
+            }
+          />
         </div>
         <div className="weather-seven-day">
-          <SevenForecast weatherReport={weatherReport} />
+          <SevenForecast dailyData={weatherReport?.forecast?.forecastday} />
         </div>
       </div>
       {modal && (
